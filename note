@@ -1,0 +1,39 @@
+print(a, b, c)，用逗号隔开多个参数的时候： print 默认会在每两个输出内容之间，自动填上一个空格。
+
+enumerate()：同时拿到索引下标 + 元素本身
+enumerate ( ) 括号里面能放什么:
+只能放「可迭代对象」（iterable）
+就是能跑 for x in xxx 的东西: 比如列表， 字符串str，  元组，  range对象，  csv reader、生成器，其他迭代器。
+for index, value in enumerate(header_row):
+    print(index, value)
+
+reader = csv.reader(lines)
+这里的括号只能传入可迭代变量, 然后下面使用 next 可以逐个遍历
+👉 reader 得到的是迭代器。
+实例代码:
+lines = ['a,b,c','1,2,3','10,20,30']
+reader = csv.reader(lines)
+r1 = next(reader)
+print(r1)  # ['a', 'b', 'c']
+for r in reader:
+    print(r)
+# ['1','2','3']
+# ['10','20','30']
+
+Matplotlib 常用图像类型:
+折线图 plot ()
+散点图 scatter ()
+柱状图 bar ()
+横向柱状图 barh ()
+直方图 hist ()
+饼图 pie ()
+面积图 fill_between ()
+箱线图 boxplot ()
+热力图 imshow ()
+
+ax.tick_params()
+专门用来修改坐标轴刻度的外观。
+
+fig.autofmt_xdate()
+作用：专门处理 X 轴的日期标签，自动旋转、倾斜日期文字，防止文字重叠挤在一起。
+注意：这是 fig（画布对象）的方法，不是 ax 的！不要写成 ax.autofmt_xdate()，会报错。
