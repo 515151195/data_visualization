@@ -37,3 +37,27 @@ ax.tick_params()
 fig.autofmt_xdate()
 作用：专门处理 X 轴的日期标签，自动旋转、倾斜日期文字，防止文字重叠挤在一起。
 注意：这是 fig（画布对象）的方法，不是 ax 的！不要写成 ax.autofmt_xdate()，会报错。
+
+matplotlib vs plotly.express:
+matplotlib：生成图片，鼠标放上去不能看数值，只能看画好的图，保存 png。
+plotly.express：生成交互式图表：鼠标悬浮上去直接显示 x、y 数值，可以放大、框选、下载图片，支持导出 html 网页文件。
+
+后缀 .geojson，是专门存地理空间数据的文本文件，纯 JSON 格式，文本可以用记事本、VS Code 直接打开看。
+JSON：存普通键值数据；
+GeoJSON：在 JSON 基础上，专门加经纬度、地理图形。
+
+pd.DataFrame(data=..., columns=[...])
+pd.DataFrame() 用来创建表格。
+data=zip(...)：传入每一行的数据，一行是一个元组。
+columns=['经度','纬度','位置','震级']：设置每一列的表头名字，顺序必须和 zip 里面顺序严格对应。
+
+data = pd.DataFrame(
+data=zip(lons, lats, titles, mags), columns=['经度', '纬度', '位置', '震级']
+)
+Q：px.scatter(df, x="经度", y="纬度")，我传入一整个 df（4 列），为什么只写 x、y 就可以？df 明明有 4 列，怎么对应？
+df 不会被全部用完！不是把整个表格塞进 x,y！
+第一个位置传df，只是告诉 px：数据源是这张表格
+然后 x="经度"：告诉 px → 去 df 里面，找名字叫「经度」那一列，拿来当做 X 轴数据
+y="纬度"：告诉 px → 去 df 里面，找名字叫「纬度」那一列，拿来当做 Y 轴数据
+剩下另外两列（位置、震级）放在 df 里躺着，默认不会使用；你想用，就要额外写参数，比如color="震级"、hover_name="位置"。
+
